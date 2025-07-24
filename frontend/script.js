@@ -12,10 +12,14 @@ async function getAllTodo(){
 
     let list = "";
     todos.forEach(todo => {
+
+        const completedClass = todo.completed ? "completed" : "";
+        const checkedAtrribute = todo.completed ? "checked" : "";
+
         list +=
         `
         <div class="todo-item">
-            <input type="radio" onclick="toggleTodoComplete('${todo.id}')">
+            <input type="radio" onclick="toggleTodoComplete('${todo.id}')" ${checkedAtrribute}>
             <span class="todo-text">${todo.title}</span>
             <button class="delete-btn" onclick="deleteTodo('${todo.id}')">🗑️</button>
         </div>

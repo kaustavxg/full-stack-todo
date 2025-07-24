@@ -53,11 +53,11 @@ app.delete('/:id', function(req, res){
 
 app.put('/todos/:id/toggle', function(req, res){
     const id = parseInt(req.params.id);
-    
     const todo = todos.find(t => t.id === id);
 
     if(todo){
         todo.completed != todo.completed;
+        res.json(todo);
     } else {
         res.status(404).json({
             error: "Todo not found"
