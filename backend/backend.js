@@ -29,7 +29,8 @@ app.post('/addTodo', validateInput, function(req, res){
 
     todos.push({
         title,
-        id
+        id,
+        completed: false //# toggle function
     })
 
     res.json(todos)
@@ -48,6 +49,20 @@ app.delete('/:id', function(req, res){
         message: "todo deleted successfully"
     })
 
+})
+
+app.put('/todos/:id/toggle', function(req, res){
+    const id = parseInt(req.params.id);
+    
+    const todo = todos.find(t => t.id === id);
+
+    if(todo){
+        todo.completed != todo.completed;
+    } else {
+        res.status(404).json({
+            error: "Todo not found"
+        })
+    }
 })
 
 app.get('/', function(req, res){

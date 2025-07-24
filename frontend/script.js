@@ -15,10 +15,10 @@ async function getAllTodo(){
         list +=
         `
         <div class="todo-item">
+            <input type="radio" onclick="toggleTodoComplete('${todo.id}')">
             <span class="todo-text">${todo.title}</span>
-            <button class="delete-btn" onclick="deleteTodo('${todo.id}')">Delete!</button>
+            <button class="delete-btn" onclick="deleteTodo('${todo.id}')">🗑️</button>
         </div>
-
         `
     })
 
@@ -52,5 +52,19 @@ async function deleteTodo(id){
         getAllTodo();
     } catch(error){
         console.log(`ERROR in delete function: ${error}`);
+    }
+}
+
+async function toggleTodoComplete(id){
+
+    try {
+        await axios.put(`http://localhost:9090/todos/${id}/toggle`)
+        const todoItem = document.getElementById(`todo-${id}`);
+        if(todoItem){
+            todoItem.classList.toggle("completed");
+        }
+    } catch (error){
+        console.log("ERROR toggling todo status: " + error);
+        
     }
 }
