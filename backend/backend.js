@@ -39,15 +39,19 @@ app.post('/addTodo', validateInput, function(req, res){
 app.delete('/:id', function(req, res){
     const id = parseInt(req.params.id);
     for(let i = 0; i < todos.length; i++){
-        if(todos[i] === id){
+        if(todos[i].id === id){
             todos.splice(i, 1);
+            break;
         }
-        break;
     }
     res.json({
         message: "todo deleted successfully"
     })
 
+})
+
+app.get('/', function(req, res){
+    res.json(todos);
 })
 
 app.listen(9090, () => {

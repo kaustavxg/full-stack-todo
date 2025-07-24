@@ -11,7 +11,7 @@ async function getAllTodo(){
     }
 
     let list = "";
-    todos.foreach(todo => {
+    todos.forEach(todo => {
         list +=
         `
         <div class="todo-item">
@@ -34,7 +34,7 @@ async function addTodo(){
     }
 
     try {
-            const response = await axios.psot("http://localhost:9090/addTodo", {
+            const response = await axios.post("http://localhost:9090/addTodo", {
             title
         })
 
@@ -44,5 +44,13 @@ async function addTodo(){
         console.log(`ERROR: ${error}`);
     }
     return;
-   
+}
+
+async function deleteTodo(id){
+    try {
+        const response = await axios.delete(`http://localhost:9090/${id}`);
+        getAllTodo();
+    } catch(error){
+        console.log(`ERROR in delete function: ${error}`);
+    }
 }
