@@ -1,6 +1,6 @@
 async function getAllTodo(){
 
-    const response = await axios.get("http://localhost:9090/");
+    const response = await axios.get("https://full-stack-todo-app-753t.onrender.com/");
     const todos = response.data;
 
     const todoList = document.getElementById('todo-list')
@@ -38,7 +38,7 @@ async function addTodo(){
     }
 
     try {
-            const response = await axios.post("http://localhost:9090/addTodo", {
+            const response = await axios.post("https://full-stack-todo-app-753t.onrender.com/addTodo", {
             title
         })
 
@@ -52,7 +52,7 @@ async function addTodo(){
 
 async function deleteTodo(id){
     try {
-        const response = await axios.delete(`http://localhost:9090/${id}`);
+        const response = await axios.delete(`https://full-stack-todo-app-753t.onrender.com/${id}`);
         getAllTodo();
     } catch(error){
         console.log(`ERROR in delete function: ${error}`);
@@ -62,7 +62,7 @@ async function deleteTodo(id){
 async function toggleTodoComplete(id){
 
     try {
-        await axios.put(`http://localhost:9090/todos/${id}/toggle`)
+        await axios.put(`https://full-stack-todo-app-753t.onrender.com/todos/${id}/toggle`)
         const todoItem = document.getElementById(`todo-${id}`);
         if(todoItem){
             todoItem.classList.toggle("completed");
