@@ -18,7 +18,7 @@ async function getAllTodo(){
 
         list +=
         `
-        <div class="todo-item">
+        <div class="todo-item ${completedClass}" id="todo-${todo.id}">
             <input type="radio" onclick="toggleTodoComplete('${todo.id}')" ${checkedAtrribute}>
             <span class="todo-text">${todo.title}</span>
             <button class="delete-btn" onclick="deleteTodo('${todo.id}')">🗑️</button>
@@ -72,3 +72,5 @@ async function toggleTodoComplete(id){
         
     }
 }
+
+getAllTodo()

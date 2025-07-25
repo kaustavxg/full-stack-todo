@@ -56,7 +56,7 @@ app.put('/todos/:id/toggle', function(req, res){
     const todo = todos.find(t => t.id === id);
 
     if(todo){
-        todo.completed != todo.completed;
+        todo.completed =! todo.completed;
         res.json(todo);
     } else {
         res.status(404).json({
